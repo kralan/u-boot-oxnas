@@ -38,7 +38,7 @@ hostprogs-$(CONFIG_VIDEO_LOGO) += bmp_logo
 HOSTCFLAGS_bmp_logo.o := -pedantic
 
 hostprogs-$(CONFIG_BUILD_ENVCRC) += envcrc
-envcrc-objs := envcrc.o lib/crc32.o common/env_embedded.o lib/sha1.o
+envcrc-objs := lib/crc32.o common/env_embedded.o lib/sha1.o mkox820crc.o
 
 hostprogs-$(CONFIG_CMD_NET) += gen_eth_addr
 HOSTCFLAGS_gen_eth_addr.o := -pedantic

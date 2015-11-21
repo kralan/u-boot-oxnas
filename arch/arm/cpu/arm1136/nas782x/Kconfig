@@ -1,0 +1,21 @@
+if ARCH_NAS782X
+
+config NAS782X
+	bool
+	default y
+
+choice
+	prompt "NAS782X board select"
+	optional
+
+config TARGET_OX820
+	bool "ox820"
+
+endchoice
+
+config SYS_SOC
+	default "nas782x"
+
+source "board/ox820/Kconfig"
+
+endif

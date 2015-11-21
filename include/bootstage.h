@@ -212,7 +212,7 @@ enum bootstage_id {
  */
 ulong timer_get_boot_us(void);
 
-#if !defined(CONFIG_SPL_BUILD) && !defined(USE_HOSTCC)
+#if !defined(CONFIG_SPL_OS_BOOT) && !defined(USE_HOSTCC)
 /*
  * Board code can implement show_boot_progress() if needed.
  *

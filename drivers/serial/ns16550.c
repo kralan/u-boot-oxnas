@@ -142,6 +142,14 @@ int ns16550_calc_divisor(NS16550_t port, int clock, int baudrate)
 	}
 	port->osc_12m_sel = 0;			/* clear if previsouly set */
 #endif
+#ifdef CONFIG_OX820
+        {
+                /* with additional 3 bit fractional */
+                u32 div = (CONFIG_SYS_NS16550_CLK + gd->baudrate) / (gd->baudrate * 2);
+                port->reg9 = (div & 7) << 5;
+                return (div >> 3);
+        }
+#endif
 
 	return calc_divisor(port, clock, baudrate);
 }

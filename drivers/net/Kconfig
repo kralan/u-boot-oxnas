@@ -16,7 +16,7 @@ config PHYLIB
 menuconfig NETDEVICES
 	bool "Network device support"
 	depends on NET
-	default y if DM_ETH
+	default y
 	help
 	  You must select Y to enable any network device support
 	  Generally if you have any networking support this is a given
@@ -79,6 +79,7 @@ config ETH_SANDBOX_RAW
 
 config ETH_DESIGNWARE
 	bool "Synopsys Designware Ethernet MAC"
+        default y
 	help
 	  This MAC is present in SoCs from various vendors. It supports
 	  100Mbit and 1 Gbit operation. You must enable CONFIG_PHYLIB to

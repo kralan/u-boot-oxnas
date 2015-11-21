@@ -450,6 +450,10 @@ config ARCH_MX6
 	bool "Freescale MX6"
 	select CPU_V7
 
+config ARCH_NAS782X
+        bool "Oxnas NAS782X"
+        select CPU_ARM1136
+
 config ARCH_MX5
 	bool "Freescale MX5"
 	select CPU_V7
@@ -688,6 +692,8 @@ source "arch/arm/cpu/armv7/mx7/Kconfig"
 
 source "arch/arm/cpu/armv7/mx6/Kconfig"
 
+source "arch/arm/cpu/arm1136/nas782x/Kconfig"
+
 source "arch/arm/cpu/armv7/mx5/Kconfig"
 
 source "arch/arm/cpu/armv7/omap3/Kconfig"
@@ -797,6 +803,8 @@ source "board/technologic/ts4800/Kconfig"
 source "board/vscom/baltos/Kconfig"
 source "board/woodburn/Kconfig"
 source "board/work-microwave/work_92105/Kconfig"
+
+source "board/ox820/Kconfig"
 
 source "arch/arm/Kconfig.debug"
 

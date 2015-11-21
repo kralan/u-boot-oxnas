@@ -12,6 +12,8 @@ obj-y += exports.o
 obj-y += hash.o
 ifdef CONFIG_SYS_HUSH_PARSER
 obj-y += cli_hush.o
+else
+obj-$(CONFIG_SPL_BLOCK_SUPPORT) += cmd_ide.o
 endif
 
 # This option is not just y/n - it can have a numeric value

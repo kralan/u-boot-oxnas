@@ -58,6 +58,8 @@ machine-$(CONFIG_ARCH_ROCKCHIP)		+= rockchip
 machine-$(CONFIG_TEGRA)			+= tegra
 machine-$(CONFIG_ARCH_UNIPHIER)		+= uniphier
 machine-$(CONFIG_ARCH_ZYNQ)		+= zynq
+machine-$(CONFIG_ARCH_NAS782x)          += nas782x
+
 
 machdirs := $(patsubst %,arch/arm/mach-%/,$(machine-y))
 

@@ -1,0 +1,32 @@
+if TARGET_OX820
+
+choice
+	prompt "Boot option select"
+	bool
+	default BOOT_FROM_NAND
+
+config BOOT_FROM_NAND
+	bool "Boot from NAND"
+
+config BOOT_FROM_SATA
+	bool "Boot from SATA"
+
+config BOOT_FROM_EXT4
+	bool "Boot from EXT4"
+
+config BOOT_FROM_FAT
+	bool "Boot from FAT"
+
+endchoice
+
+config SYS_BOARD
+	default "ox820"
+
+#config SYS_VENDOR
+#	default "OXNAS"
+#
+
+config SYS_CONFIG_NAME
+	default "ox820"
+
+endif

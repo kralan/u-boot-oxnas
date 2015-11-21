@@ -10,3 +10,5 @@ extra-y	= start.o
 obj-y += ../arm11/
 obj-$(CONFIG_MX31) += mx31/
 obj-$(CONFIG_MX35) += mx35/
+obj-$(CONFIG_NAS782X) += nas782x/
+
