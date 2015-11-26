@@ -1,0 +1,25 @@
+Current version branch 2015.10-oxnas
+
+Supports the OX820 devices:
+ 
+Pogoplug V3 Pro and Classic
+
+For u-boot images:
+
+http://forum.doozan.com/read.php?3,16017
+
+==============================================
+
+Change Log:
+
+-----------
+
+oxnas branch (2013.10)
+
+Supports building SPL stage1, NAND and SATA(EXT4, FAT) U-Boot
+
+-----------
+
+2015.10-oxnas branch 
+Currently supports building NAND U-Boot only. Please use SPL stage1 from oxnas branch.
+
