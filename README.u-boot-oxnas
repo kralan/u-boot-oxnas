@@ -1,12 +1,28 @@
-Current version branch 2015.10-oxnas
+Current version branch 2015.10-oxnas for U-Boot
+Current version branch oxnas for SPL
 
 Supports the OX820 devices:
  
-Pogoplug V3 Pro and Classic
+Pogoplug V3 Pro
+Pogoplug V3 Classic (no Wifi)
+Medion NAS MD 86xxx (MitraStar STG-212) 
 
 For u-boot images:
-
 http://forum.doozan.com/read.php?3,16017
+
+Special Build Note for SPL
+--------------------------
+
+Use GCC 4 to build.
+
+After built, look in ./spl directory for SPL binary
+./spl/u-boot-spl.bin
+
+Need to encode it:
+./encode.py u-boot-spl.bin u-boot-spl-encoded.bin 
+
+Then make it 128K:
+dd if=u-boot-spl-encoded.bin of=u-boot-spl.mtd0.img bs=128k conv=sync
 
 ==============================================
 
