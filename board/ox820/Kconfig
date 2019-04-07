@@ -1,9 +1,8 @@
 if TARGET_OX820
 
-choice
-	prompt "Boot option select"
-	bool
-	default BOOT_FROM_NAND
+#choice
+#	prompt "Boot option select"
+#	default BOOT_FROM_NAND
 
 config BOOT_FROM_NAND
 	bool "Boot from NAND"
@@ -17,7 +16,7 @@ config BOOT_FROM_EXT4
 config BOOT_FROM_FAT
 	bool "Boot from FAT"
 
-endchoice
+#endchoice
 
 config SYS_BOARD
 	default "ox820"
