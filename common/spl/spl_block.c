@@ -80,13 +80,13 @@ static int block_load_image_fat_os(void)
 {
 	int err;
 
-	err = file_fat_read(CONFIG_SPL_FAT_LOAD_ARGS_NAME,
+	err = file_fat_read(CONFIG_SPL_FS_LOAD_ARGS_NAME,
 			    (void *)CONFIG_SYS_SPL_ARGS_ADDR, 0);
 	if (err <= 0) {
 		return -1;
 	}
 
-	return block_load_image_fat(CONFIG_SPL_FAT_LOAD_KERNEL_NAME);
+	return block_load_image_fat(CONFIG_SPL_FS_LOAD_KERNEL_NAME);
 }
 #endif
 
@@ -105,27 +105,29 @@ void spl_block_load_image(void)
 	if (spl_start_uboot() || block_load_image_fat_os())
 #endif
 	{
-		err = block_load_image_fat(CONFIG_SPL_FAT_LOAD_PAYLOAD_NAME);
+		err = block_load_image_fat(CONFIG_SPL_FS_LOAD_PAYLOAD_NAME);
 		if (err)
 			hang();
 	}
 }
-#elif defined(CONFIG_SPL_EXT4_SUPPORT) /* end CONFIG_SPL_FAT_SUPPORT */
+#elif defined(CONFIG_SPL_EXT_SUPPORT) /* end CONFIG_SPL_FAT_SUPPORT */
 static int block_load_image_ext4(const char *filename)
 {
 	int err;
+	loff_t actread;
+
 	struct image_header *header;
 
 	header = (struct image_header *)(CONFIG_SYS_TEXT_BASE -
 						sizeof(struct image_header));
 
-	err = ext4_read_file(filename, header, 0, sizeof(struct image_header));
+	err = ext4_read_file(filename, header, 0, sizeof(struct image_header), &actread);
 	if (err <= 0)
 		goto end;
 
 	spl_parse_image_header(header);
 
-	err = ext4_read_file(filename, (u8 *)spl_image.load_addr, 0, 0);
+	err = ext4_read_file(filename, (u8 *)spl_image.load_addr, 0, 0, &actread);
 
 end:
 	return (err <= 0);
@@ -135,14 +137,15 @@ end:
 static int block_load_image_ext4_os(void)
 {
 	int err;
+	loff_t actread;
 
-	err = ext4_read_file(CONFIG_SPL_EXT4_LOAD_ARGS_NAME,
-			    (void *)CONFIG_SYS_SPL_ARGS_ADDR, 0, 0);
+	err = ext4_read_file(CONFIG_SPL_FS_LOAD_ARGS_NAME,
+			    (void *)CONFIG_SYS_SPL_ARGS_ADDR, 0, 0, &actread);
 	if (err <= 0) {
 		return -1;
 	}
 
-	return block_load_image_ext4(CONFIG_SPL_EXT4_LOAD_KERNEL_NAME);
+	return block_load_image_ext4(CONFIG_SPL_FS_LOAD_KERNEL_NAME);
 }
 #endif
 
@@ -160,12 +163,12 @@ void spl_block_load_image(void)
 	if (spl_start_uboot() || block_load_image_ext4_os())
 #endif
 	{
-		err = block_load_image_ext4(CONFIG_SPL_EXT4_LOAD_PAYLOAD_NAME);
+		err = block_load_image_ext4(CONFIG_SPL_FS_LOAD_PAYLOAD_NAME);
 		if (err)
 			hang();
 	}
 }
-#else /* end CONFIG_SPL_EXT4_SUPPORT */
+#else /* end CONFIG_SPL_EXT_SUPPORT */
 static int block_load_image_raw(block_dev_desc_t * device, lbaint_t sector)
 {
 	int n;

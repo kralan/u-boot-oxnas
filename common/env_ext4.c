@@ -85,6 +85,7 @@ void env_relocate_spec(void)
 	int dev = EXT4_ENV_DEVICE;
 	int part = EXT4_ENV_PART;
 	int err;
+	loff_t actread;
 
 	dev_desc = get_dev(EXT4_ENV_INTERFACE, dev);
 	if (dev_desc == NULL) {
@@ -102,7 +103,7 @@ void env_relocate_spec(void)
 		return;
 	}
 
-	err = ext4_read_file(EXT4_ENV_FILE, (uchar *)&buf, 0, CONFIG_ENV_SIZE);
+	err = ext4_read_file(EXT4_ENV_FILE, (uchar *)&buf, 0, CONFIG_ENV_SIZE, &actread);
 	ext4fs_close();
 
 	if (err == -1) {

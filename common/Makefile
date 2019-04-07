@@ -51,6 +51,7 @@ obj-$(CONFIG_ENV_IS_IN_NVRAM) += env_embedded.o
 obj-$(CONFIG_ENV_IS_IN_FLASH) += env_flash.o
 obj-$(CONFIG_ENV_IS_IN_MMC) += env_mmc.o
 obj-$(CONFIG_ENV_IS_IN_FAT) += env_fat.o
+obj-$(CONFIG_ENV_IS_IN_EXT4) += env_ext4.o
 obj-$(CONFIG_ENV_IS_IN_NAND) += env_nand.o
 obj-$(CONFIG_ENV_IS_IN_NVRAM) += env_nvram.o
 obj-$(CONFIG_ENV_IS_IN_ONENAND) += env_onenand.o
@@ -233,6 +234,9 @@ obj-$(CONFIG_USB_STORAGE) += usb_storage.o
 endif
 ifdef CONFIG_SPL_SATA_SUPPORT
 obj-$(CONFIG_CMD_SCSI) += cmd_scsi.o
+endif
+ifdef CONFIG_SPL_BLOCK_SUPPORT
+obj-$(CONFIG_CMD_IDE) += cmd_ide.o
 endif
 # environment
 ifdef CONFIG_SPL_ENV_SUPPORT

@@ -284,11 +284,15 @@ int board_init(void)
 
 	/* assume uart is already initialized by SPL */
 
+	return 0;
+}
+
+int board_start_ide(void)
+{
 #if defined(CONFIG_START_IDE)
 	puts("IDE:   ");
 	ide_init();
 #endif
-
 	return 0;
 }
 

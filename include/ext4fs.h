@@ -148,5 +148,6 @@ int ext4fs_probe(block_dev_desc_t *fs_dev_desc,
 int ext4_read_file(const char *filename, void *buf, loff_t offset, loff_t len,
 		   loff_t *actread);
 int ext4_read_superblock(char *buffer);
+int ext4_register_device(block_dev_desc_t *dev_desc, int part_no);
 int ext4fs_uuid(char *uuid_str);
 #endif
